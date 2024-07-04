@@ -50,6 +50,13 @@ jobs:
         run: |
           export GPG_TTY=$(tty)
           mvn -ntp -B package
+      - name: Create JReleaser config file
+        run: |
+         mkdir -p /home/runner/.jreleaser
+         echo "project.name=MyProject" > /home/runner/.jreleaser/config.properties
+         echo "project.version=1.0.0" >> /home/runner/.jreleaser/config.properties
+         echo "github.username=${{ secrets.GITHUB_USERNAME }}" >> /home/runner/.jreleaser/config.properties
+         echo "github.token=${{ secrets.GITHUB_TOKEN }}" >> /home/runner/.jreleaser/config.properties
 
       - name: Release
         env:
