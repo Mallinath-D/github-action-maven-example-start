@@ -61,7 +61,7 @@
                         <files>
                             <artifacts>
                                 <artifact>
-                                    <path>target/java21-hello-world-${project.version}.jar</path>
+                                    <path>target/github-action-maven-tutorial-${project.version}.jar</path>
                                 </artifact>
                             </artifacts>
                         </files>
