@@ -4,8 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <name>j21-gh-release-test</name>
-    <groupId>pl.ppaprock</groupId>
-    <artifactId>java21-hello-world</artifactId>
+    <groupId>org.kth</groupId>
+    <artifactId>github-action-maven-tutorial</artifactId>
     <version>V1.0.0</version>
 
     <properties>
