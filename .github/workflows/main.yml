@@ -24,7 +24,7 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
-          java-version: 14
+          java-version: 22
           distribution: 'corretto'
           cache: maven
 
