@@ -51,7 +51,7 @@ jobs:
       - name: Stage
         run: |
           export GPG_TTY=$(tty)
-          mvn -ntp -B package
+          mvn -ntp -B package --file pom.xml
 
       - name: Release
         env:
