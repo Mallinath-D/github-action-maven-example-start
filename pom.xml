@@ -6,7 +6,7 @@
     <name>j21-gh-release-test</name>
     <groupId>pl.ppaprock</groupId>
     <artifactId>java21-hello-world</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>V1.0.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
