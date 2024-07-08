@@ -29,7 +29,7 @@ jobs:
       run: |
         mkdir release
         cp target/*.jar release/
-        zip -r release.zip release
+        zip -r release-${{ github.event.inputs.version }}.zip release
 
     - name: Create Release
       id: create_release
