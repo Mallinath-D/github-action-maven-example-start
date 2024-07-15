@@ -63,7 +63,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ env.RELEASE_VERSION }}
-          release_name: Lambda Ext Release ${{ env.RELEASE_VERSION }}
+          release_name: MRP-Serverless Release ${{ env.RELEASE_VERSION }}
           draft: false 
           prerelease: false 
 
@@ -74,7 +74,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: release/java-build-${{ env.RELEASE_VERSION }}.zip
-          asset_name: java-build-${{ env.RELEASE_VERSION }}.zip
+          asset_name: Lambda-Ext-${{ env.RELEASE_VERSION }}.zip
           asset_content_type: application/zip
 
       - name: Reset NEXT_RELEASE_CHANGELOG.md
