@@ -45,24 +45,16 @@ jobs:
           echo "RELEASE_VERSION=$RELEASE_VERSION" >> $GITHUB_ENV
           echo "NEXT_VERSION=$NEXT_VERSION" >> $GITHUB_ENV
           echo "PLAIN_VERSION=$PLAIN_VERSION" >> $GITHUB_ENV
+
       - name: Stage
         run: |
           export GPG_TTY=$(tty)
           mvn -ntp -B package
-      - name: Release
-        run: |
-          mvn -ntp -B jreleaser:release
-      - name: JReleaser output
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: jreleaser-release
-          path: |
-            target/jreleaser/trace.log
-            target/jreleaser/output.properties
+
       - name: Reset NEXT_RELEASE_CHANGELOG.md
         run: |
           echo -e "### Features\n\n### Enhancements\n\n### Bugs\n\n### Documentation\n\n### Build\n" > NEXT_RELEASE_CHANGELOG.md
+
       - name: Set next version
         run: |
           mvn -ntp -B versions:set versions:commit -DnewVersion=${{ env.NEXT_VERSION }} -DgenerateBackupPoms=false
