@@ -56,11 +56,26 @@ jobs:
           mkdir -p release
           zip -r release/java-build-${{ env.RELEASE_VERSION }}.zip target/*
 
-      - name: Upload Java build ZIP
-        uses: actions/upload-artifact@v4
+      - name: Create GitHub release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: java-build-${{ env.RELEASE_VERSION }}
-          path: release/java-build-${{ env.RELEASE_VERSION }}.zip
+          tag_name: ${{ env.RELEASE_VERSION }}
+          release_name: Release ${{ env.RELEASE_VERSION }}
+          draft: false 
+          prerelease: false 
+
+      - name: Upload Java build ZIP to release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: release/java-build-${{ env.RELEASE_VERSION }}.zip
+          asset_name: java-build-${{ env.RELEASE_VERSION }}.zip
+          asset_content_type: application/zip
 
       - name: Reset NEXT_RELEASE_CHANGELOG.md
         run: |
