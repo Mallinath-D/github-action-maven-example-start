@@ -51,6 +51,17 @@ jobs:
           export GPG_TTY=$(tty)
           mvn -ntp -B package
 
+      - name: Create ZIP file
+        run: |
+          mkdir -p release
+          zip -r release/java-build-${{ env.RELEASE_VERSION }}.zip target/*
+
+      - name: Upload Java build ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: java-build-${{ env.RELEASE_VERSION }}
+          path: release/java-build-${{ env.RELEASE_VERSION }}.zip
+
       - name: Reset NEXT_RELEASE_CHANGELOG.md
         run: |
           echo -e "### Features\n\n### Enhancements\n\n### Bugs\n\n### Documentation\n\n### Build\n" > NEXT_RELEASE_CHANGELOG.md
